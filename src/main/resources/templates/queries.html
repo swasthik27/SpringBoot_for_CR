@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Queries</title>
+</head>
+<body>
+<h1>Query List</h1>
+<form th:action="@{/queries/add}" method="post">
+    <input type="text" name="details" placeholder="Query Details" required>
+    <button type="submit">Add Query</button>
+</form>
+<ul>
+    <li th:each="query : ${queries}">
+        <span th:text="${query.details}"></span> |
+        <span th:text="${query.resolved ? 'Resolved' : 'Unresolved'}"></span>
+        <a th:href="@{/queries/delete/{id}(id=${query.id})}">Delete</a>
+    </li>
+</ul>
+</body>
+</html>
